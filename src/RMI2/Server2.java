@@ -1,18 +1,15 @@
-package RMI;
+package RMI2;
 
-import com.sun.corba.se.spi.activation.ServerOperations;
-
-import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-public class Server implements Hello {
+public class Server2 implements Hello2 {
 
     public static Registry registry;
 
-    protected Server() throws RemoteException{
+    protected Server2() throws RemoteException{
     }
 
     @Override
@@ -23,10 +20,12 @@ public class Server implements Hello {
 
     public static void main(String[] args) {
         try {
-            Server obj = new Server();
-            Hello stub = (Hello) UnicastRemoteObject.exportObject(obj, 0);
 
-            registry = LocateRegistry.createRegistry(1099);
+            int port = (args.length<1)? null : Integer.parseInt(args[0]);
+            Server2 obj = new Server2();
+            Hello2 stub = (Hello2) UnicastRemoteObject.exportObject(obj, 0);
+
+            registry = LocateRegistry.createRegistry(port);
             registry.rebind("DESKTOP-1D7T13P", obj);
             System.err.println("Server2 ready");
         }catch (Exception e){
