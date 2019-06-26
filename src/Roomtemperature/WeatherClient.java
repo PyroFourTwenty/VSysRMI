@@ -15,16 +15,14 @@ import java.util.Scanner;
 
 public class WeatherClient implements Serializable {
 
-    public static String hostName = "DESKTOP-RSJE3MT";
-    public static final int port = 55123;
-    public static Registry registry;
-    public static boolean connectionSuccessful = false;
-
+    private static final int port = 55123;
+    private static boolean connectionSuccessful = false;
     private static WeatherApi stub;
 
     public static void main(String[] args) {
         try {
-            registry = LocateRegistry.getRegistry(hostName, port);
+            String hostName = "DESKTOP-RSJE3MT";
+            Registry registry = LocateRegistry.getRegistry(hostName, port);
             stub = (WeatherApi) registry.lookup(hostName);
             connectionSuccessful = true;
             System.out.println("Server is reachable :)");
@@ -45,10 +43,9 @@ public class WeatherClient implements Serializable {
             } while (!input.equals("exit"));
 
         }
-
     }
 
-    static boolean hasNeededFormat(String dateString) {
+    private static boolean hasNeededFormat(String dateString) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         try {
             Date date = sdf.parse(dateString);
@@ -57,7 +54,8 @@ public class WeatherClient implements Serializable {
         }
         return true;
     }
-    private static void bye(){
+
+    private static void bye() {
         try {
             stub.bye();
         } catch (RemoteException e) {
@@ -65,7 +63,7 @@ public class WeatherClient implements Serializable {
         }
     }
 
-    public static void pingWeatherServer() {
+    private static void pingWeatherServer() {
         try {
             long timestamp1 = System.currentTimeMillis(), timestamp2, delta;
             int repsonse = stub.ping();
@@ -77,7 +75,7 @@ public class WeatherClient implements Serializable {
         }
     }
 
-    public static void printMainmenu() {
+    private static void printMainmenu() {
         StringBuilder sb = new StringBuilder();
         sb.append("-------Hello and welcome to the roomtemperature client------").append(System.lineSeparator());
         sb.append("-----------------Type in the option of your choice.----------").append(System.lineSeparator());
@@ -87,7 +85,7 @@ public class WeatherClient implements Serializable {
         System.out.println(sb.toString());
     }
 
-    public static void weatherQuery(String dateString) {
+    private static void weatherQuery(String dateString) {
         try {
             System.out.println(stub.weatherQuery(dateString));
         } catch (RemoteException e) {
