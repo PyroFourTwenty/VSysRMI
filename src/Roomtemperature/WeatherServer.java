@@ -17,45 +17,55 @@ import java.util.Locale;
 
 public class WeatherServer implements WeatherApi, Serializable {
 
-    private static Connection connection;
+    private Connection connection;
 
     public static void main(String[] args) {
         try {
-            WeatherServer obj = new WeatherServer();
-            int port = 55123;
-            WeatherApi stub = (WeatherApi) UnicastRemoteObject.exportObject(obj, port);
-            Registry registry = LocateRegistry.createRegistry(port);
-            registry.rebind("DESKTOP-RSJE3MT", obj);
-            System.out.println("Weather server ready ");
-        } catch (Exception e) {
-            e.printStackTrace();
+            new WeatherServer();
+        } catch (RemoteException e) {
+            System.out.println("Something unusual happened");
         }
     }
 
-    private static void connectToDatabase() {
+    private void bindServerInstanceToRegistry() {
+        try {
+            int port = 55123;
+            WeatherApi stub = (WeatherApi) UnicastRemoteObject.exportObject(this, port);
+            Registry registry = LocateRegistry.createRegistry(port);
+            registry.rebind("DESKTOP-RSJE3MT", this);
+            System.out.println("Weather server running on port " + port + " :)");
+        } catch (Exception e) {
+            System.out.println("Could not start server :(");
+        }
+    }
+
+    private void connectToDatabase() {
         StringBuilder sb = new StringBuilder().append("Establishing database connection: ");
         try {
+            DoNotOpenThisSuperSecretCredentialClass luce = new DoNotOpenThisSuperSecretCredentialClass();
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://db.f4.htw-berlin.de:3306/_s0559625__Zimmertemperatur?serverTimezone=UTC", "user", "password");
+                    "jdbc:mysql://db.f4.htw-berlin.de:3306/_s0559625__Zimmertemperatur?serverTimezone=UTC", luce.getUsername(), luce.getPassword());
             sb.append("success");
         } catch (Exception e) {
-            e.printStackTrace();
+            sb.append("failed");
+        }
+        System.out.println(sb.toString());
+
+    }
+
+    private void disconnectFromDatabase() {
+        StringBuilder sb = new StringBuilder("Closing database connection: ");
+        try {
+            connection.close();
+            sb.append("success");
+        } catch (SQLException e) {
             sb.append("failed");
         }
         System.out.println(sb.toString());
     }
 
-    private static void disconnectFromDatabase() {
-        System.out.println("Closing database connection");
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static int[] getYearMonthDayFromString(String dateString) throws ParseException {
+    private int[] getDateIntArrayFromString(String dateString) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         Date date = sdf.parse(dateString);
         final Calendar cal = Calendar.getInstance();
@@ -66,33 +76,29 @@ public class WeatherServer implements WeatherApi, Serializable {
         return new int[]{year, month, day};
     }
 
-    private static String getSqlQueryFromString(String dateString) throws ParseException {
-        int[] timeValues = getYearMonthDayFromString(dateString);
+    private String getSqlQueryFromString(String dateString) throws ParseException {
+        int[] timeValues = getDateIntArrayFromString(dateString);
         int year = timeValues[0];
         int month = timeValues[1];
         int day = timeValues[2];
-        String query = "SELECT * FROM `messungen` WHERE day = " + day +
+        return "SELECT * FROM `messungen` WHERE day = " + day +
                 " AND month = " + month +
                 " AND year = " + year + " ORDER BY `location` DESC, `year` DESC, `month` DESC, `day` DESC, `hour` DESC, `minute` DESC, `second` DESC";
-        return query;
     }
 
-    private static ResultSet getResultSetFromQuery(String sqlStatement) {
-
-        connectToDatabase();
+    private ResultSet getResultSetFromQuery(String sqlStatement) {
         try {
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery(sqlStatement);
             return rs;
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("Could not access database");
             return null;
         }
     }
 
-
     private WeatherServer() throws RemoteException {
-
+        bindServerInstanceToRegistry();
     }
 
     @Override
@@ -133,33 +139,32 @@ public class WeatherServer implements WeatherApi, Serializable {
     }
 
     @Override
-    public String weatherQuery(String day) {
-        System.out.println("weatherquery for " + day);
-
+    public String getWeatherValuesForDay(String day) {
+        System.out.println("Getting values for day " + day);
         try {
             String query = getSqlQueryFromString(day);
+            connectToDatabase();
             ResultSet resultSet = getResultSetFromQuery(query);
             ArrayList<Measurement> measurements = parseMeasurementsFromResultSet(resultSet);
-            if (measurements.size() == 0) {
+            disconnectFromDatabase();
+            if (measurements == null || measurements.size() == 0) {
                 return "Sorry, but there are no measurements of this day";
             } else {
+                System.out.println("Retrievd "+measurements.size()+ " rows");
                 Measurement[] calculatedValues = calculateRequiredValues(measurements);
-                StringBuilder sb = new StringBuilder();
-                sb.append("max : ").append(calculatedValues[0].temperature).append("°C").append(System.lineSeparator());
-                sb.append("min : ").append(calculatedValues[1].temperature).append("°C").append(System.lineSeparator());
-                sb.append("max : ").append(calculatedValues[2].humidity).append("% relative humidity").append(System.lineSeparator());
-                sb.append("min : ").append(calculatedValues[3].humidity).append("% relative humidty").append(System.lineSeparator());
-                sb.append("average temperature : ").append(calculatedValues[4].temperature).append("°C").append(System.lineSeparator());
-                sb.append("average humidity : ").append(calculatedValues[4].humidity).append("% relative humidty").append(System.lineSeparator());
-                disconnectFromDatabase();
-                return sb.toString();
+                return "max : " + calculatedValues[0].temperature + " °C" + System.lineSeparator() +
+                        "min : " + calculatedValues[1].temperature + " °C" + System.lineSeparator() +
+                        "max : " + calculatedValues[2].humidity + " % relative humidity" + System.lineSeparator() +
+                        "min : " + calculatedValues[3].humidity + " % relative humidty" + System.lineSeparator() +
+                        "average temperature : " + calculatedValues[4].temperature + " °C" + System.lineSeparator() +
+                        "average humidity : " + calculatedValues[4].humidity + " % relative humidty" + System.lineSeparator();
             }
         } catch (ParseException e) {
             return "That is not a correct date.";
         }
     }
 
-    private static ArrayList<Measurement> parseMeasurementsFromResultSet(ResultSet rs) {
+    private ArrayList<Measurement> parseMeasurementsFromResultSet(ResultSet rs) {
         String temperature, humidity, location, year, month, day, hour, minute, second;
         StringBuilder sb = new StringBuilder();
         ArrayList<Measurement> measurements = new ArrayList<>();
@@ -169,17 +174,17 @@ public class WeatherServer implements WeatherApi, Serializable {
                 humidity = rs.getString("humidity");
                 location = rs.getString("location");
                 year = rs.getString("year");
-                sb.append(year + " ");
+                sb.append(year).append(" ");
                 month = rs.getString("month");
-                sb.append(month + " ");
+                sb.append(month).append(" ");
                 day = rs.getString("day");
-                sb.append(day + " ");
+                sb.append(day).append(" ");
                 hour = rs.getString("hour");
-                sb.append(hour + " ");
+                sb.append(hour).append(" ");
                 minute = rs.getString("minute");
-                sb.append(minute + " ");
+                sb.append(minute).append(" ");
                 second = rs.getString("second");
-                sb.append(second + " ");
+                sb.append(second).append(" ");
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy MM dd HH mm ss");
                 Date date = sdf.parse(sb.toString());
                 measurements.add(
@@ -191,18 +196,9 @@ public class WeatherServer implements WeatherApi, Serializable {
                         )
                 );
             }
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-        } catch (ParseException pe) {
-            pe.printStackTrace();
+            return measurements;
+        } catch (Exception e) {
+            return null;
         }
-        return measurements;
     }
-
-    @Override
-    public void bye() throws RemoteException {
-        disconnectFromDatabase();
-    }
-
-
 }

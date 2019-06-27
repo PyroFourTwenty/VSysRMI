@@ -1,10 +1,6 @@
 package Roomtemperature;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import java.io.Serializable;
-import java.rmi.AccessException;
-import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -15,13 +11,38 @@ import java.util.Scanner;
 
 public class WeatherClient implements Serializable {
 
-    private static final int port = 55123;
-    private static boolean connectionSuccessful = false;
-    private static WeatherApi stub;
+    private boolean connectionSuccessful = false;
+    private WeatherApi stub;
 
     public static void main(String[] args) {
+        new WeatherClient();
+    }
+
+     private WeatherClient() {
+        createWeatherApiStub();
+        if (connectionSuccessful) {
+            commandLineLoop();
+        }
+    }
+
+    private void commandLineLoop() {
+        Scanner sc = new Scanner(System.in);
+        String input;
+        do {
+            printMainmenu();
+            input = sc.nextLine().trim();
+            if (input.equals("ping")) {
+                pingWeatherServer();
+            } else if (hasNeededFormat(input)) {
+                weatherQuery(input);
+            }
+        } while (!input.equals("exit"));
+    }
+
+    private void createWeatherApiStub() {
         try {
             String hostName = "DESKTOP-RSJE3MT";
+            int port = 55123;
             Registry registry = LocateRegistry.getRegistry(hostName, port);
             stub = (WeatherApi) registry.lookup(hostName);
             connectionSuccessful = true;
@@ -29,55 +50,37 @@ public class WeatherClient implements Serializable {
         } catch (Exception e) {
             System.out.println("Could not reach server :(");
         }
-        if (connectionSuccessful) {
-            Scanner sc = new Scanner(System.in);
-            String input;
-            do {
-                printMainmenu();
-                input = sc.nextLine().trim();
-                if (input.equals("ping")) {
-                    pingWeatherServer();
-                } else if (hasNeededFormat(input)) {
-                    weatherQuery(input);
-                }
-            } while (!input.equals("exit"));
-
-        }
     }
 
-    private static boolean hasNeededFormat(String dateString) {
+    private boolean hasNeededFormat(String dateString) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         try {
             Date date = sdf.parse(dateString);
+            return true;
         } catch (ParseException e) {
             return false;
         }
-        return true;
     }
 
-    private static void bye() {
-        try {
-            stub.bye();
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static void pingWeatherServer() {
+    private void pingWeatherServer() {
         try {
             long timestamp1 = System.currentTimeMillis(), timestamp2, delta;
             int repsonse = stub.ping();
             timestamp2 = System.currentTimeMillis();
-            delta = (timestamp2 - timestamp1) / 2;
+            delta = calculatePassedTimeInMillis(timestamp1, timestamp2);
             System.out.println("Ping is " + delta + " ms");
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Ping is currently not available");
         }
+    }
+
+    private long calculatePassedTimeInMillis(long firstTimestamp, long secondTimestamo) {
+        return (secondTimestamo - firstTimestamp) / 2;
     }
 
     private static void printMainmenu() {
         StringBuilder sb = new StringBuilder();
-        sb.append("-------Hello and welcome to the roomtemperature client------").append(System.lineSeparator());
+        sb.append("-------Hello and welcome to the roomtemperature client-------").append(System.lineSeparator());
         sb.append("-----------------Type in the option of your choice.----------").append(System.lineSeparator());
         sb.append("-------------- ping | ping the weatherserver ----------------").append(System.lineSeparator());
         sb.append("---- dd.MM.yyyy  | get a range of values for this day--------").append(System.lineSeparator());
@@ -85,11 +88,12 @@ public class WeatherClient implements Serializable {
         System.out.println(sb.toString());
     }
 
-    private static void weatherQuery(String dateString) {
+    private void weatherQuery(String dateString) {
         try {
-            System.out.println(stub.weatherQuery(dateString));
+            System.out.println("Please wait");
+            System.out.println(stub.getWeatherValuesForDay(dateString));
         } catch (RemoteException e) {
-            e.printStackTrace();
+            System.out.println("Weather query is currently not available");
         }
     }
 }
