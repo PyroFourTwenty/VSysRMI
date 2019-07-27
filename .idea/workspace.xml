@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d037f43-e5fb-45e0-a7d1-39279258be1e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Roomtemperature/Data/Measurement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Roomtemperature/Measurement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Roomtemperature/Measurement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Roomtemperature/WeatherApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Roomtemperature/WeatherApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Roomtemperature/WeatherClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Roomtemperature/WeatherClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Roomtemperature/Measurement.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Roomtemperature/WeatherServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Roomtemperature/WeatherServer.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -20,36 +19,55 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Roomtemperature/WeatherServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="45" column="54" lean-forward="true" selection-start-line="45" selection-start-column="54" selection-end-line="45" selection-end-column="54" />
-              <folding>
-                <element signature="e#3481#3482#0" expanded="true" />
-                <element signature="e#3505#3506#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-96">
+              <caret line="158" column="8" lean-forward="true" selection-start-line="158" selection-start-column="8" selection-end-line="158" selection-end-column="8" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Roomtemperature/DoNotOpenThisSuperSecretCredentialClass.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Roomtemperature/Data/Util/MeasurementsUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+            <state relative-caret-position="663">
+              <caret line="39" column="23" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
               <folding>
-                <element signature="e#112#113#0" expanded="true" />
-                <element signature="e#136#137#0" expanded="true" />
-                <element signature="e#173#174#0" expanded="true" />
-                <element signature="e#206#207#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Roomtemperature/Measurement.java">
+        <entry file="file://$PROJECT_DIR$/src/Roomtemperature/DoNotOpenThisSuperSecretCredentialClass.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+            <state relative-caret-position="68">
+              <caret line="8" column="5" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Roomtemperature/Data/Measurements.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#200#201#0" expanded="true" />
+                <element signature="e#248#249#0" expanded="true" />
+                <element signature="e#367#368#0" expanded="true" />
+                <element signature="e#471#472#0" expanded="true" />
+                <element signature="e#566#567#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Roomtemperature/Data/Measurement.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -57,12 +75,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Roomtemperature/WeatherClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="92" column="43" selection-start-line="92" selection-start-column="43" selection-end-line="92" selection-end-column="43" />
+            <state relative-caret-position="544">
+              <caret line="41" column="12" selection-start-line="41" selection-start-column="12" selection-end-line="41" selection-end-column="12" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#635#636#0" expanded="true" />
-                <element signature="e#670#671#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -71,7 +87,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Roomtemperature/WeatherApi.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
+            <state relative-caret-position="153">
               <caret line="10" selection-start-line="10" selection-end-line="10" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -122,11 +138,14 @@
         <option value="$PROJECT_DIR$/src/RMI2/Server.java" />
         <option value="$PROJECT_DIR$/src/RMI2/Server2.java" />
         <option value="$PROJECT_DIR$/src/RMI2/Client2.java" />
-        <option value="$PROJECT_DIR$/src/Roomtemperature/Measurement.java" />
         <option value="$PROJECT_DIR$/src/Roomtemperature/WeatherApi.java" />
         <option value="$PROJECT_DIR$/src/Roomtemperature/WeatherClient.java" />
-        <option value="$PROJECT_DIR$/src/Roomtemperature/WeatherServer.java" />
         <option value="$PROJECT_DIR$/src/Roomtemperature/DoNotOpenThisSuperSecretCredentialClass.java" />
+        <option value="$PROJECT_DIR$/src/Roomtemperature/Measurement.java" />
+        <option value="$PROJECT_DIR$/src/Roomtemperature/Data/Measurement.java" />
+        <option value="$PROJECT_DIR$/src/Roomtemperature/WeatherServer.java" />
+        <option value="$PROJECT_DIR$/src/Roomtemperature/Data/Util/MeasurementsUtil.java" />
+        <option value="$PROJECT_DIR$/src/Roomtemperature/Data/Measurements.java" />
       </list>
     </option>
   </component>
@@ -137,9 +156,9 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
-    <option name="width" value="974" />
-    <option name="height" value="1047" />
+    <option name="x" value="-12" />
+    <option name="width" value="1461" />
+    <option name="height" value="1572" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -150,6 +169,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -180,17 +200,23 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Roomtemperature" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="VSysRMI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="VSysRMI" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Roomtemperature" type="462c0819:PsiDirectoryNode" />
+              <item name="Data" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561648688084" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1563707890301" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/mysql-connector-java-8.0.16.jar!/" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -215,7 +241,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.WeatherServer">
+  <component name="RunManager" selected="Application.WeatherClient">
     <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="RMI.Client" />
       <module name="VSysRMI" />
@@ -262,7 +288,7 @@
       <module name="VSysRMI" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Roomtemperature.*" />
+          <option name="PATTERN" value="Roomtemperature.Data.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -275,7 +301,7 @@
       <module name="VSysRMI" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Roomtemperature.*" />
+          <option name="PATTERN" value="Roomtemperature.Data.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -322,11 +348,10 @@
     <option name="totallyTimeSpent" value="8861000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4963899" visible="true" weight="0.40394878" />
-      <window_info id="Run" order="1" sideWeight="0.50361013" side_tool="true" visible="true" weight="0.40394878" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49019608" visible="true" weight="0.22546634" />
+      <window_info id="Run" order="1" sideWeight="0.50980395" side_tool="true" weight="0.13300893" />
       <window_info id="Structure" order="2" sideWeight="0.501634" side_tool="true" weight="0.55921054" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Designer" order="4" />
@@ -334,8 +359,8 @@
       <window_info id="Capture Tool" order="6" />
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info anchor="bottom" id="Debug" order="2" visible="true" weight="0.3984799" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32798573" />
+      <window_info anchor="bottom" id="Debug" order="2" weight="0.64612675" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="5" />
@@ -471,9 +496,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Roomtemperature/WeatherClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="41" column="12" selection-start-line="41" selection-start-column="12" selection-end-line="41" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Roomtemperature/WeatherApi.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
+        <state relative-caret-position="153">
           <caret line="10" selection-start-line="10" selection-end-line="10" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -481,45 +516,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Roomtemperature/WeatherClient.java">
+    <entry file="file://$PROJECT_DIR$/src/Roomtemperature/Data/Measurement.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="92" column="43" selection-start-line="92" selection-start-column="43" selection-end-line="92" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#635#636#0" expanded="true" />
-            <element signature="e#670#671#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Roomtemperature/Measurement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Roomtemperature/WeatherServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="45" column="54" lean-forward="true" selection-start-line="45" selection-start-column="54" selection-end-line="45" selection-end-column="54" />
+        <state relative-caret-position="-96">
+          <caret line="158" column="8" lean-forward="true" selection-start-line="158" selection-start-column="8" selection-end-line="158" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Roomtemperature/Data/Util/MeasurementsUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="39" column="23" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
           <folding>
-            <element signature="e#3481#3482#0" expanded="true" />
-            <element signature="e#3505#3506#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Roomtemperature/DoNotOpenThisSuperSecretCredentialClass.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+        <state relative-caret-position="68">
+          <caret line="8" column="5" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Roomtemperature/Data/Measurements.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
           <folding>
-            <element signature="e#112#113#0" expanded="true" />
-            <element signature="e#136#137#0" expanded="true" />
-            <element signature="e#173#174#0" expanded="true" />
-            <element signature="e#206#207#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#200#201#0" expanded="true" />
+            <element signature="e#248#249#0" expanded="true" />
+            <element signature="e#367#368#0" expanded="true" />
+            <element signature="e#471#472#0" expanded="true" />
+            <element signature="e#566#567#0" expanded="true" />
           </folding>
         </state>
       </provider>

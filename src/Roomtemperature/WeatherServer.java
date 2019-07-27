@@ -1,5 +1,8 @@
 package Roomtemperature;
 
+import Roomtemperature.Data.Measurement;
+import Roomtemperature.Data.Util.MeasurementsUtil;
+
 import java.io.Serializable;
 import java.math.RoundingMode;
 import java.rmi.RemoteException;
@@ -125,17 +128,9 @@ public class WeatherServer implements WeatherApi, Serializable {
             avg.temperature += m.temperature;
             avg.humidity += m.humidity;
         }
-        avg.temperature = roundFloat(avg.temperature / measurements.size());
-        avg.humidity = roundFloat(avg.humidity / measurements.size());
+        avg.temperature = MeasurementsUtil.roundFloat(avg.temperature / measurements.size());
+        avg.humidity = MeasurementsUtil.roundFloat(avg.humidity / measurements.size());
         return new Measurement[]{maxTemp, minTemp, maxHumid, minHumid, avg};
-    }
-
-    private float roundFloat(float value) {
-        NumberFormat formatter = NumberFormat.getInstance(Locale.US);
-        formatter.setMaximumFractionDigits(2);
-        formatter.setMinimumFractionDigits(2);
-        formatter.setRoundingMode(RoundingMode.HALF_UP);
-        return new Float(formatter.format(value));
     }
 
     @Override
